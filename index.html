@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Image Gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>My Image Gallery</h1>
+    <p class="subtitle">Explore beautiful moments</p>
+
+    <div class="filters">
+        <button onclick="filterImages('all')">All</button>
+        <button onclick="filterImages('nature')">Nature</button>
+        <button onclick="filterImages('bird')">Bird</button>
+        <button onclick="filterImages('city')">City</button>
+    </div>
+
+    <div class="gallery">
+        <div class="gallery-item nature">
+            <img src="photos/photo1.jpeg" alt="Nature">
+            <p>Nature</p>
+        </div>
+
+        <div class="gallery-item nature">
+            <img src="photos/photo2.jpeg" alt="Flowers">
+            <p>Flowers</p>
+        </div>
+
+        <div class="gallery-item bird">
+            <img src="photos/photo3.jpeg" alt="Bird">
+            <p>Bird</p>
+        </div>
+
+        <div class="gallery-item nature">
+            <img src="photos/photo4.jpeg" alt="Sunset">
+            <p>Sunset</p>
+        </div>
+
+        <div class="gallery-item city">
+            <img src="photos/photo5.jpeg" alt="Bengaluru City">
+            <p>City - Bengaluru</p>
+        </div>
+    </div>
+
+    <div id="lightbox" class="lightbox">
+        <button class="close" onclick="closeLightbox()">×</button>
+        <button class="prev" onclick="changeImage(-1)">❮</button>
+        <img id="largeImage" src="" alt="Selected image">
+        <button class="next" onclick="changeImage(1)">❯</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

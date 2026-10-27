@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,79 +9,49 @@
 </head>
 <body>
 
-    <header class="header">
-        <h1>My Image Gallery</h1>
-        <p>Explore beautiful moments</p>
-    </header>
+    <h1>My Image Gallery</h1>
+    <p class="subtitle">Explore beautiful moments</p>
 
-    <nav class="filters" aria-label="Gallery filters">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="nature">Nature</button>
-        <button class="filter-btn" data-filter="bird">Bird</button>
-        <button class="filter-btn" data-filter="city">City</button>
-    </nav>
-
-    <main class="gallery" id="gallery">
-
-        <article class="gallery-item" data-category="nature">
-            <img src="photos/photo1.jpeg" alt="Beautiful Nature" class="gallery-image">
-            <div class="image-info">
-                <h2>Nature</h2>
-                <p>Beautiful natural landscape</p>
-            </div>
-        </article>
-
-        <article class="gallery-item" data-category="nature">
-            <img src="photos/photo2.jpeg" alt="Beautiful Flowers" class="gallery-image">
-            <div class="image-info">
-                <h2>Flowers</h2>
-                <p>Beautiful white flowers</p>
-            </div>
-        </article>
-
-        <article class="gallery-item" data-category="bird">
-            <img src="photos/photo3.jpeg" alt="Beautiful Bird" class="gallery-image">
-            <div class="image-info">
-                <h2>Bird</h2>
-                <p>A beautiful bird in nature</p>
-            </div>
-        </article>
-
-        <article class="gallery-item" data-category="nature">
-            <img src="photos/photo4.jpeg" alt="Beautiful Sunset" class="gallery-image">
-            <div class="image-info">
-                <h2>Sunset</h2>
-                <p>A peaceful sunset view</p>
-            </div>
-        </article>
-
-        <article class="gallery-item" data-category="city">
-            <img src="photos/photo5.jpeg" alt="Bengaluru City" class="gallery-image">
-            <div class="image-info">
-                <h2>Bengaluru City</h2>
-                <p>Beautiful city architecture</p>
-            </div>
-        </article>
-
-    </main>
-
-    <p id="no-results" hidden>No images found in this category.</p>
-
-    <div class="lightbox" id="lightbox" aria-hidden="true">
-        <button class="close-btn" id="closeBtn" aria-label="Close">&times;</button>
-        <button class="prev-btn" id="prevBtn" aria-label="Previous image">&#10094;</button>
-
-        <div class="lightbox-content">
-            <img id="lightboxImage" src="" alt="">
-            <p id="lightboxCaption"></p>
-        </div>
-
-        <button class="next-btn" id="nextBtn" aria-label="Next image">&#10095;</button>
+    <div class="filters">
+        <button onclick="filterImages('all')">All</button>
+        <button onclick="filterImages('nature')">Nature</button>
+        <button onclick="filterImages('bird')">Bird</button>
+        <button onclick="filterImages('city')">City</button>
     </div>
 
-    <footer>
-        <p>&copy; 2026 My Image Gallery | Created using HTML, CSS and JavaScript</p>
-    </footer>
+    <div class="gallery">
+        <div class="gallery-item nature">
+            <img src="photos/photo1.jpeg" alt="Nature">
+            <p>Nature</p>
+        </div>
+
+        <div class="gallery-item nature">
+            <img src="photos/photo2.jpeg" alt="Flowers">
+            <p>Flowers</p>
+        </div>
+
+        <div class="gallery-item bird">
+            <img src="photos/photo3.jpeg" alt="Bird">
+            <p>Bird</p>
+        </div>
+
+        <div class="gallery-item nature">
+            <img src="photos/photo4.jpeg" alt="Sunset">
+            <p>Sunset</p>
+        </div>
+
+        <div class="gallery-item city">
+            <img src="photos/photo5.jpeg" alt="Bengaluru City">
+            <p>City - Bengaluru</p>
+        </div>
+    </div>
+
+    <div id="lightbox" class="lightbox">
+        <button class="close" onclick="closeLightbox()">×</button>
+        <button class="prev" onclick="changeImage(-1)">❮</button>
+        <img id="largeImage" src="" alt="Selected image">
+        <button class="next" onclick="changeImage(1)">❯</button>
+    </div>
 
     <script src="script.js"></script>
 </body>

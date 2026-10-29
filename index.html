@@ -5,54 +5,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Image Gallery</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>My Image Gallery</h1>
-    <p class="subtitle">Explore beautiful moments</p>
+    <header>
+        <h1>My Image Gallery</h1>
+        <p>Explore beautiful images</p>
+    </header>
 
-    <div class="filters">
-        <button onclick="filterImages('all')">All</button>
-        <button onclick="filterImages('nature')">Nature</button>
-        <button onclick="filterImages('bird')">Bird</button>
-        <button onclick="filterImages('city')">City</button>
+    <!-- Filter Buttons -->
+    <div class="filter-buttons">
+        <button class="active" data-filter="all">All</button>
+        <button data-filter="nature">Nature</button>
+        <button data-filter="flowers">Flowers</button>
+        <button data-filter="bird">Bird</button>
+        <button data-filter="city">City</button>
     </div>
 
+    <!-- Image Gallery -->
     <div class="gallery">
-        <div class="gallery-item nature">
-            <img src="photos/photo1.jpeg" alt="Nature">
-            <p>Nature</p>
+
+        <div class="gallery-item" data-category="nature">
+            <img src="photo1.jpeg" alt="Nature"
+                 onclick="openLightbox(0)">
+            <h3>Nature</h3>
         </div>
 
-        <div class="gallery-item nature">
-            <img src="photos/photo2.jpeg" alt="Flowers">
-            <p>Flowers</p>
+        <div class="gallery-item" data-category="flowers">
+            <img src="photo2.jpeg" alt="Flowers"
+                 onclick="openLightbox(1)">
+            <h3>Flowers</h3>
         </div>
 
-        <div class="gallery-item bird">
-            <img src="photos/photo3.jpeg" alt="Bird">
-            <p>Bird</p>
+        <div class="gallery-item" data-category="bird">
+            <img src="photo3.jpeg" alt="Bird"
+                 onclick="openLightbox(2)">
+            <h3>Bird</h3>
         </div>
 
-        <div class="gallery-item nature">
-            <img src="photos/photo4.jpeg" alt="Sunset">
-            <p>Sunset</p>
+        <div class="gallery-item" data-category="nature">
+            <img src="photo4.jpeg" alt="Sunset"
+                 onclick="openLightbox(3)">
+            <h3>Sunset</h3>
         </div>
 
-        <div class="gallery-item city">
-            <img src="photos/photo5.jpeg" alt="Bengaluru City">
-            <p>City - Bengaluru</p>
+        <div class="gallery-item" data-category="city">
+            <img src="photo5.jpeg" alt="Bengaluru City"
+                 onclick="openLightbox(4)">
+            <h3>Bengaluru City</h3>
         </div>
+
     </div>
 
-    <div id="lightbox" class="lightbox">
-        <button class="close" onclick="closeLightbox()">×</button>
-        <button class="prev" onclick="changeImage(-1)">❮</button>
-        <img id="largeImage" src="" alt="Selected image">
-        <button class="next" onclick="changeImage(1)">❯</button>
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="close" onclick="closeLightbox()"
+                aria-label="Close">&times;</button>
+
+        <button class="prev" onclick="changeImage(-1)"
+                aria-label="Previous image">&#10094;</button>
+
+        <img id="lightbox-img" src="" alt="Selected image">
+
+        <button class="next" onclick="changeImage(1)"
+                aria-label="Next image">&#10095;</button>
     </div>
+
+    <footer>
+        <p>My Image Gallery Project | HTML, CSS & JavaScript</p>
+    </footer>
 
     <script src="script.js"></script>
+
 </body>
 </html>

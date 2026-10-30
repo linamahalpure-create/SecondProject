@@ -1,74 +1,65 @@
 
-const filterButtons = document.querySelectorAll(".filter-buttons button");
-const galleryItems = document.querySelectorAll(".gallery-item");
-
+const galleryImages = document.querySelectorAll(".gallery-item img");
 const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
+const largeImage = document.getElementById("largeImage");
 
-let currentImageIndex = 0;
+let currentIndex = 0;
 
-const images = Array.from(galleryItems).map(item => {
-    return item.querySelector("img");
-});
-
-// Filter buttons
-filterButtons.forEach(button => {
-    button.addEventListener("click", function () {
-        const filter = this.dataset.filter;
-
-        filterButtons.forEach(btn => btn.classList.remove("active"));
-        this.classList.add("active");
-
-        galleryItems.forEach(item => {
-            const category = item.dataset.category;
-
-            if (filter === "all" || category === filter) {
-                item.style.display = "";
-            } else {
-                item.style.display = "none";
-            }
-        });
+galleryImages.forEach(function(image, index) {
+    image.addEventListener("click", function() {
+        currentIndex = index;
+        showImage();
+        lightbox.style.display = "flex";
     });
 });
 
-// Open lightbox
-function openLightbox(index) {
-    currentImageIndex = index;
-    lightboxImg.src = images[index].src;
-    lightboxImg.alt = images[index].alt;
-    lightbox.classList.add("show");
+function showImage() {
+    largeImage.src = galleryImages[currentIndex].src;
+    largeImage.alt = galleryImages[currentIndex].alt;
 }
 
-// Close lightbox
-function closeLightbox() {
-    lightbox.classList.remove("show");
-}
-
-// Next and previous images
 function changeImage(direction) {
-    currentImageIndex =
-        (currentImageIndex + direction + images.length) % images.length;
+    currentIndex = currentIndex + direction;
 
-    lightboxImg.src = images[currentImageIndex].src;
-    lightboxImg.alt = images[currentImageIndex].alt;
+    if (currentIndex >= galleryImages.length) {
+        currentIndex = 0;
+    }
+
+    if (currentIndex < 0) {
+        currentIndex = galleryImages.length - 1;
+    }
+
+    showImage();
 }
 
-// Close when clicking outside the image
-lightbox.addEventListener("click", function (event) {
+function closeLightbox() {
+    lightbox.style.display = "none";
+}
+
+lightbox.addEventListener("click", function(event) {
     if (event.target === lightbox) {
         closeLightbox();
     }
 });
 
-// Keyboard controls
-document.addEventListener("keydown", function (event) {
-    if (!lightbox.classList.contains("show")) return;
-
-    if (event.key === "Escape") {
-        closeLightbox();
-    } else if (event.key === "ArrowRight") {
-        changeImage(1);
-    } else if (event.key === "ArrowLeft") {
-        changeImage(-1);
+document.addEventListener("keydown", function(event) {
+    if (lightbox.style.display === "flex") {
+        if (event.key === "Escape") {
+            closeLightbox();
+        } else if (event.key === "ArrowRight") {
+            changeImage(1);
+        } else if (event.key === "ArrowLeft") {
+            changeImage(-1);
+        }
     }
 });
+
+function filterImages(category) {
+    document.querySelectorAll(".gallery-item").forEach(function(item) {
+        if (category === "all" || item.classList.contains(category)) {
+            item.style.display = "block";
+        } else {
+            item.style.display = "none";
+        }
+    });
+}
